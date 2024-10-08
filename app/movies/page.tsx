@@ -1,3 +1,4 @@
+import { Container, Card } from '@/shared/components';
 import { handleResponse } from '@/shared/helpers';
 import { Movie } from '@/shared/types';
 
@@ -16,17 +17,12 @@ const Movies: React.FC = async () => {
   const movies: Array<Movie> = handleResponse(data);
 
   return (
-    <div className="grid grid-cols-4 max-w-[1000px] mx-auto gap-2 mt-10">
+    <Container>
       {movies.map((movies) => {
         const { id, title, tagline } = movies;
-        return (
-          <div key={id} className="border rounded-md p-2 flex flex-col">
-            <div className="text-blue-400 font-bold">{title}</div>
-            <div>{tagline}</div>
-          </div>
-        );
+        return <Card key={id} title={title} description={tagline} />;
       })}
-    </div>
+    </Container>
   );
 };
 
